@@ -1,0 +1,19 @@
+parameter extraction excercise-1
+
+.lib /project2020/eda/ngspice-32/models/scn4m_subm/scmos_bsim4.lib nom
+.temp 25
+
+
+Vds out 0 dc 5v
+Vid out D dc 0v
+Vgs G 0 dc 1
+
+M1 D G 0 0 n w=2.5u l=1u m=1
+.model n nmos(vto=0.49 kp=55u phi=1 lambda=0.0208 gamma=0.603)
+.dc Vds 0 5 0.001
+
+.control
+run
+plot Vid#branch vs v(D)
+.endc
+.end
